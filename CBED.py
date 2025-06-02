@@ -4,13 +4,11 @@ import csv
 # Function to get the numeric value of a chess move from a CSV file
 def get_move_value(filename, move):
     with open(filename, mode='r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            if row[0].strip().lower() == move.strip().lower():
-                return int(row[1])  # assumes CSV has format: move_name,value
+        for i, line in enumerate(file):
+            if line.strip().lower() == move.strip().lower():
+                return i + 1  # or just i, if you want 0-based indexing
     print(f"Invalid move: {move}")
     return None
-
 # Encryption function
 def encrypt(filename):
     data = input("Enter the data to encrypt: ")
